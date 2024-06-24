@@ -7,6 +7,7 @@ import com.gymAI.exercise.infrastructure.adapters.outputs.persistence.repository
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -22,6 +23,13 @@ public class ExercisePersistenceAdapter implements ExercisePersistencePort {
         );
 
     }
+
+    @Override
+    public List<Exercise> getAll() {
+        return mapper.toExerciseList(exerciseRepository.findAll());
+    }
+
+    @Override
     public Exercise save(Exercise exercise){
         return mapper.toExercise(exerciseRepository.save(mapper.toExerciseEntity(exercise)));
     }
