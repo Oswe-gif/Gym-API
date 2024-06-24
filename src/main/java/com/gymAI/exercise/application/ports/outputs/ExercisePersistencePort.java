@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface ExercisePersistencePort {
     //lo de base de datos
     Optional<Exercise> findById(Long id);
+    Exercise save(Exercise exercise);
 }

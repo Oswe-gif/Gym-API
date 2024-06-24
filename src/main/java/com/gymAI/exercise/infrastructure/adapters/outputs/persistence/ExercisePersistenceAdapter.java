@@ -14,12 +14,15 @@ import java.util.Optional;
 public class ExercisePersistenceAdapter implements ExercisePersistencePort {
 
     private ExerciseRepository exerciseRepository;
-    private ExercisePersistenceMapper exercisePersistenceMapper;
+    private ExercisePersistenceMapper mapper;
     @Override
     public Optional<Exercise> findById(Long id) {
         return exerciseRepository.findById(id).map((exerciseEntity)->
-            exercisePersistenceMapper.toExercise(exerciseEntity)
+                mapper.toExercise(exerciseEntity)
         );
 
+    }
+    public Exercise save(Exercise exercise){
+        return mapper.toExercise(exerciseRepository.save(mapper.toExerciseEntity(exercise)));
     }
 }

@@ -27,4 +27,9 @@ public class ExerciseService implements ExerciseServicePort {
         throw new ExerciseNotFoundException();
 
     }
+
+    @Override
+    public Exercise save(Exercise exercise) {
+        return exercisePersistencePort.save(exercise);
+    }
 }

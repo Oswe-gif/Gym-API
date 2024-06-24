@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ExercisePersistenceMapper {
-    ExerciseEntity exerciseEntity(Exercise exercise);
+    ExerciseEntity toExerciseEntity(Exercise exercise);
     Exercise toExercise(ExerciseEntity exerciseEntity);
     List<Exercise> toExerciseList(List<ExerciseEntity> exerciseEntityList);
 }
