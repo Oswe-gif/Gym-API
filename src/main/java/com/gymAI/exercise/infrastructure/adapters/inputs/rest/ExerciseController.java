@@ -4,6 +4,7 @@ import com.gymAI.exercise.application.ports.inputs.ExerciseServicePort;
 import com.gymAI.exercise.domain.model.Exercise;
 import com.gymAI.exercise.infrastructure.adapters.inputs.rest.mapper.ExerciseRestMapper;
 import com.gymAI.exercise.infrastructure.adapters.inputs.rest.model.request.ExerciseCreateRequest;
+import com.gymAI.exercise.infrastructure.adapters.inputs.rest.model.request.ExerciseUpdateRequest;
 import com.gymAI.exercise.infrastructure.adapters.inputs.rest.model.response.ExerciseResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -43,5 +44,10 @@ public class ExerciseController {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         servicePort.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<ExerciseResponse> updateOne(@Valid @RequestBody ExerciseUpdateRequest exercise, @PathVariable Long id){
+        Exercise updatedExercise = servicePort.update(restMapper.fromUpdateRequestToExercise(exercise), id);
+        return ResponseEntity.status(HttpStatus.OK).body(restMapper.toExerciseResponse(updatedExercise));
     }
 }

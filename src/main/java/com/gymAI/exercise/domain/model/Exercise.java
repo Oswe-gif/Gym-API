@@ -2,6 +2,7 @@ package com.gymAI.exercise.domain.model;
 
 import lombok.*;
 
+@Builder
 @Setter
 @Getter
 public class Exercise {
