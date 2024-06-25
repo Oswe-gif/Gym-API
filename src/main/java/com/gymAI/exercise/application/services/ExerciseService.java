@@ -42,4 +42,14 @@ public class ExerciseService implements ExerciseServicePort {
     public Exercise save(Exercise exercise) {
         return exercisePersistencePort.save(exercise);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        Optional<Exercise> o = exercisePersistencePort.findById(id);
+        if (!o.isPresent()){
+            throw new ExerciseNotFoundException();
+        }
+        exercisePersistencePort.deleteById(id);
+
+    }
 }

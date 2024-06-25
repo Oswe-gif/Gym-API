@@ -39,4 +39,9 @@ public class ExerciseController {
         Exercise exercise = servicePort.save(restMapper.toExercise(exerciseCreateRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(restMapper.toExerciseResponse(exercise));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        servicePort.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

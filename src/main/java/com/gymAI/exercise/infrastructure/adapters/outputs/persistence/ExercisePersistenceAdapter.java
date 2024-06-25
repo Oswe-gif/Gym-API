@@ -33,4 +33,9 @@ public class ExercisePersistenceAdapter implements ExercisePersistencePort {
     public Exercise save(Exercise exercise){
         return mapper.toExercise(exerciseRepository.save(mapper.toExerciseEntity(exercise)));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        exerciseRepository.deleteById(id);
+    }
 }
