@@ -18,7 +18,7 @@ import static com.gymAI.exercise.utils.ErrorCatalog.*;
 @RestControllerAdvice
 public class GlobalControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)//se envia este codigo como respuesta HTTP
-    @ExceptionHandler(ExerciseNotFoundException.class)//y aca se colocan las exceptiones que yo cree o las que viene con java, o sea cuando salta una exception de ese tipo ps llama a este endpoint
+    @ExceptionHandler(ExerciseNotFoundException.class)
     public ErrorResponse handleExerciseNotFoundException(){
         return ErrorResponse.builder()
                 .code(EXERCISE_NOT_FOUND.getCode())
@@ -28,7 +28,7 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)//se envia este codigo como respuesta HTTP
-    @ExceptionHandler(MethodArgumentNotValidException.class)//y aca se colocan las exceptiones que yo cree o las que viene con java, o sea cuando salta una exception de ese tipo ps llama a este endpoint
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
         BindingResult result = e.getBindingResult();
         return ErrorResponse.builder()

@@ -38,4 +38,9 @@ public class ExercisePersistenceAdapter implements ExercisePersistencePort {
     public void deleteById(Long id) {
         exerciseRepository.deleteById(id);
     }
+
+    @Override
+    public List<Exercise> findAllById(List<Long> ids) {
+        return mapper.toExerciseList(exerciseRepository.findAllById(ids));
+    }
 }

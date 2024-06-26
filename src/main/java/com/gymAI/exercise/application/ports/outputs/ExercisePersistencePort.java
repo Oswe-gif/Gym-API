@@ -11,4 +11,5 @@ public interface ExercisePersistencePort {
     List<Exercise> getAll();
     Exercise save(Exercise exercise);
     void deleteById(Long id);
+    List<Exercise> findAllById(List<Long> ids);
 }

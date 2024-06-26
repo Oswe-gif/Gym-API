@@ -50,4 +50,8 @@ public class ExerciseController {
         Exercise updatedExercise = servicePort.update(restMapper.fromUpdateRequestToExercise(exercise), id);
         return ResponseEntity.status(HttpStatus.OK).body(restMapper.toExerciseResponse(updatedExercise));
     }
+    @GetMapping("/exercises")
+    public ResponseEntity<List<ExerciseResponse>> findAllById(@RequestParam List<Long> ids){
+        return ResponseEntity.status(HttpStatus.OK).body(restMapper.toExerciseResponseList(servicePort.findAllById(ids)));
+    }
 }

@@ -11,4 +11,5 @@ public interface ExerciseServicePort {
     Exercise save(Exercise exercise);
     void deleteById(Long id);
     Exercise update(Exercise exercise, Long id);
+    List<Exercise> findAllById(List<Long> ids);
 }

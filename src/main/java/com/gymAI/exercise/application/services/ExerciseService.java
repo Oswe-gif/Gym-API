@@ -1,5 +1,6 @@
 package com.gymAI.exercise.application.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gymAI.exercise.application.ports.inputs.ExerciseServicePort;
 import com.gymAI.exercise.application.ports.outputs.ExercisePersistencePort;
 import com.gymAI.exercise.domain.exception.ExerciseNotFoundException;
@@ -7,8 +8,11 @@ import com.gymAI.exercise.domain.model.Exercise;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -65,6 +69,16 @@ public class ExerciseService implements ExerciseServicePort {
         if (!(exercise.getDetails() == null)){
             o.get().setDetails(exercise.getDetails());
         }
+
         return exercisePersistencePort.save(o.get());
+    }
+
+    @Override
+    public List<Exercise> findAllById(List<Long> ids) {
+        List<Exercise> exercises = exercisePersistencePort.findAllById(ids);
+        if (!exercises.isEmpty()){
+            return exercises;
+        }
+        throw new ExerciseNotFoundException();
     }
 }
