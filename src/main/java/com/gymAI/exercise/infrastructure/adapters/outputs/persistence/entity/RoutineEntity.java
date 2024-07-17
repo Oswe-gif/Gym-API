@@ -6,28 +6,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-
 @Setter
 @Getter
 @Entity
-@Table(name="exercises")
-public class ExerciseEntity {
+@Table(name="routines")
+public class RoutineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany(mappedBy = "exercises")
-    private List<RoutineEntity> routines;
+    @ManyToMany
+    @JoinTable(
+            name = "exercise_routine",
+            joinColumns = @JoinColumn(name = "routine_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_id")
+    )
+    private List<ExerciseEntity> exercises;
     @NotBlank
     private String title;
-    private String details;
 
     /*@Override
     public String toString() {
-        return "ExerciseEntity{" +
-                "id=" + id +
-                ", routines=" + routines +
+        return "RoutineEntity{" +
+                "exercises=" + exercises +
                 ", title='" + title + '\'' +
-                ", details='" + details + '\'' +
+                ", id=" + id +
                 '}';
     }*/
 }

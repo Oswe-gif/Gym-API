@@ -43,4 +43,10 @@ public class ExercisePersistenceAdapter implements ExercisePersistencePort {
     public List<Exercise> findAllById(List<Long> ids) {
         return mapper.toExerciseList(exerciseRepository.findAllById(ids));
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return exerciseRepository.existsById(id);
+    }
+
 }

@@ -1,17 +1,15 @@
 package com.gymAI.exercise.domain.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
-
 @Builder
 @Setter
 @Getter
-public class Exercise {
-    //un objeto POJO
+public class Routine {
     private Long id;
     private String title;
-    private String details;
-    //private List<Routine> routines;
-
+    private List<Exercise> exercises;
 }
